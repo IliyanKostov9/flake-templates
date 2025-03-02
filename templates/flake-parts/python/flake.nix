@@ -1,5 +1,5 @@
 {
-  description = "Description for the project";
+  description = "Python project";
 
   inputs = {
     devenv-root = {
