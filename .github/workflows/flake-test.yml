@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - master
-  schedule:
-    - cron: "37 13 * * *"
-    - cron: "3 14 * * 1,5"
-  workflow_dispatch:
 
 jobs:
   flake-checker:
