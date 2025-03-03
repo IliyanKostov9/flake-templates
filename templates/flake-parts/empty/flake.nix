@@ -1,5 +1,5 @@
 {
-  description = "Description for the project";
+  description = "Empty project";
 
   inputs = {
     devenv-root = {
@@ -9,9 +9,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
     devenv.url = "github:cachix/devenv";
-    nix2container.url = "github:nlewo/nix2container";
-    nix2container.inputs.nixpkgs.follows = "nixpkgs";
-    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
   };
 
   nixConfig = {
@@ -19,52 +16,43 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ flake-parts, devenv-root, ... }:
+  outputs = inputs@{ nixpkgs, flake-parts, devenv-root, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.devenv.flakeModule
       ];
-      systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      systems = nixpkgs.lib.systems.flakeExposed;
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
-        # Per-system attributes can be defined here. The self' and inputs'
-        # module parameters provide easy access to attributes of the same
-        # system.
-
-        # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
-        packages.default = pkgs.hello;
+        # NOTE: Unfree packages
+        # _module.args.pkgs = import inputs.nixpkgs {
+        #   inherit system;
+        #   config.allowUnfree = true;
+        # };
 
         devenv.shells.default = {
+          name = "Empty project";
+
+          # NOTE: First do devenv shell
+          # git-hooks.hooks = {
+          #   actionlint =
+          #     {
+          #       enable = true;
+          #       excludes = [ "docker-publish.yaml" ];
+          #     };
+          #   checkmake.enable = true;
+          # };
+
           devenv.root =
             let
               devenvRootFileContent = builtins.readFile devenv-root.outPath;
             in
             pkgs.lib.mkIf (devenvRootFileContent != "") devenvRootFileContent;
 
-          name = "my-project";
-
-          imports = [
-            # This is just like the imports in devenv.nix.
-            # See https://devenv.sh/guides/using-with-flake-parts/#import-a-devenv-module
-            # ./devenv-foo.nix
+          packages = with pkgs; [
+            # hello
           ];
-
-          # https://devenv.sh/reference/options/
-          packages = [ config.packages.default ];
-
-          enterShell = ''
-            hello
-          '';
-
-          processes.hello.exec = "hello";
         };
-
-      };
-      flake = {
-        # The usual flake attributes can be defined here, including system-
-        # agnostic ones like nixosModule and system-enumerating ones, although
-        # those are more easily expressed in perSystem.
-
       };
     };
 }

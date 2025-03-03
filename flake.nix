@@ -19,6 +19,11 @@
         description = "Javascript flake template";
       };
 
+      empty = {
+        path = ./templates/flake-parts/empty;
+        description = "Empty flake template";
+      };
+
     };
   };
 }
