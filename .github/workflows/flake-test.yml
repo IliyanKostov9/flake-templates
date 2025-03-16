@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: DeterminateSystems/nix-installer-action@v15
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v16
         with:
           name: flake-templates
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -28,7 +28,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: DeterminateSystems/nix-installer-action@v15
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v16
         with:
           name: flake-templates
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
