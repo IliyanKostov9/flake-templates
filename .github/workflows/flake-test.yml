@@ -32,7 +32,7 @@ jobs:
         with:
           name: flake-templates
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - uses: DeterminateSystems/update-flake-lock@v24
+      - uses: DeterminateSystems/update-flake-lock@v25
         with:
           pr-title: "chore: update flake.lock"
           pr-labels: |
