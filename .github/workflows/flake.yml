@@ -35,7 +35,9 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         with:
           pr-title: "chore: update flake.lock"
+          pr-assignees: IliyanKostov9
           path-to-flake-dir: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/
+          branch: chore/flake-bump-${{ matrix.flakes }}
           pr-labels: |
             dependencies
             automated
