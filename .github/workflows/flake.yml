@@ -32,7 +32,7 @@ jobs:
       - uses: DeterminateSystems/update-flake-lock@v27
         with:
           pr-title: "chore: update flake.lock"
-          path-to-flake-dir: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/flake.lock
+          path-to-flake-dir: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/
           pr-labels: |
             dependencies
             automated
