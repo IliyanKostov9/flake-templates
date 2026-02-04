@@ -10,7 +10,7 @@ env:
 
 jobs:
   flake:
-    name: Flake ❄️ Lock 🔒️ Updater ✨
+    name: Flake ❄️
     runs-on: ubuntu-24.04
     strategy:
       matrix:
@@ -25,14 +25,18 @@ jobs:
           name: flake-templates
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - uses: DeterminateSystems/flake-checker-action@v12
+      - name: Lock 🔒️
+        uses: DeterminateSystems/flake-checker-action@v12
         with:
           flake-lock-path: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/flake.lock
 
-      - uses: DeterminateSystems/update-flake-lock@v28
+      - name: Updater ✨
+        uses: DeterminateSystems/update-flake-lock@v28
+        if: ${{ github.event_name != 'pull_request' }}
         with:
           pr-title: "chore: update flake.lock"
           path-to-flake-dir: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/
           pr-labels: |
             dependencies
             automated
+          token: ${{ secrets.GIT_PR_PUSH_UPDATES_CI }}
