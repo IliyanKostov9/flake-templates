@@ -29,7 +29,11 @@ jobs:
         with:
           flake-lock-path: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/flake.lock
 
-      - uses: DeterminateSystems/update-flake-lock@v27
+      - name: Git init
+        run: git init
+        working-directory: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}
+
+      - uses: DeterminateSystems/update-flake-lock@v28
         with:
           pr-title: "chore: update flake.lock"
           path-to-flake-dir: ${{ env.FLAKE_PATH }}/${{ matrix.flakes }}/
