@@ -41,4 +41,5 @@ jobs:
           pr-labels: |
             dependencies
             automated
-          token: ${{ secrets.GIT_PR_PUSH_UPDATES_CI }}
+          # token: ${{ secrets.GIT_PR_PUSH_UPDATES_CI }}
+      # NOTE: Commented because I want github to be the author to make pull request, not me (for the auto approval bot on repo-landing-zone)
