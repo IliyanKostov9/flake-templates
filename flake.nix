@@ -1,9 +1,8 @@
 {
   description = "Flake template by Iliyan Kostov";
 
-  outputs = { self }: {
+  outputs = {self}: {
     templates = {
-
       java = {
         path = ./templates/flake-parts/java;
         description = "Java flake template";
@@ -23,7 +22,6 @@
         path = ./templates/flake-parts/empty;
         description = "Empty flake template";
       };
-
     };
   };
 }
