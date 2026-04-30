@@ -18,6 +18,11 @@
         description = "Javascript flake template";
       };
 
+      terraform = {
+        path = ./templates/flake-parts/terraform;
+        description = "Terraform flake template";
+      };
+
       empty = {
         path = ./templates/flake-parts/empty;
         description = "Empty flake template";

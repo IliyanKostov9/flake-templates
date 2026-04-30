@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        flakes: ["empty", "java", "javascript", "python"]
+        flakes: ["empty", "java", "javascript", "python", "terraform"]
     steps:
       - uses: actions/checkout@v6
         with:
