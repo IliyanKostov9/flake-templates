@@ -8,7 +8,8 @@ This project complements the devenv flake-parts usage by adding dependencies dep
 1. Java
 2. Javascript
 3. Python
-4. None (empty)
+4. Terraform
+5. None (empty)
 
 ## Commands to install the templates
 
@@ -30,6 +31,11 @@ This project complements the devenv flake-parts usage by adding dependencies dep
  nix flake init --template github:IliyanKostov9/flake-templates#javascript
 ```
 
+### Terraform
+
+```bash
+ nix flake init --template github:IliyanKostov9/flake-templates#terraform
+```
 
 ### Empty
 
