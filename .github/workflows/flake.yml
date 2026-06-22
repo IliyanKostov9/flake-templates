@@ -16,7 +16,7 @@ jobs:
       matrix:
         flakes: ["empty", "java", "javascript", "python", "terraform"]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - uses: DeterminateSystems/nix-installer-action@v22
