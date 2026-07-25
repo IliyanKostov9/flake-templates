@@ -23,7 +23,7 @@ jobs:
       - name: Save repo to artifact
         uses: actions/upload-artifact@v7
         with:
-          name: nixos-config
+          name: flake-templates
           path: .
           overwrite: true
           include-hidden-files: true
@@ -39,7 +39,7 @@ jobs:
       - name: Download repo artifact
         uses: actions/download-artifact@v8
         with:
-          name: nixos-config
+          name: flake-templates
           path: .
 
       - name: GitGuardian scan

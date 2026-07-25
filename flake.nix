@@ -13,6 +13,11 @@
         description = "Python flake template";
       };
 
+      go = {
+        path = ./templates/flake-parts/go;
+        description = "Go flake template";
+      };
+
       javascript = {
         path = ./templates/flake-parts/javascript;
         description = "Javascript flake template";
